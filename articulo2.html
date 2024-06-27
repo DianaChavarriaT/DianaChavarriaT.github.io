@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación: Quinoa vs Arroz</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f3f3f3;
+        }
+
+        /* Estilos para el encabezado */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #4caf50;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            flex: 1;
+        }
+
+        .logo h1 {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* Estilos para el menú de navegación */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: #388E3C;
+            transform: scale(1.1);
+        }
+
+        /* Submenú desplegable */
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #4caf50;
+            z-index: 1;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .submenu a {
+            display: block;
+            padding: 10px 15px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .submenu a:hover {
+            background-color: #388E3C;
+        }
+
+        nav ul li:hover .submenu {
+            display: block;
+        }
+
+        /* Estilos para el icono de menú (hamburguesa) */
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 3;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #fff;
+            transition: 0.4s;
+            position: relative;
+            transform-origin: center;
+        }
+
+        .menu-icon span:before,
+        .menu-icon span:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            transition: transform 0.4s;
+        }
+
+        .menu-icon span:before {
+            top: -10px;
+        }
+
+        .menu-icon span:after {
+            top: 10px;
+        }
+
+        /* Estilos para la transformación de hamburguesa a "X" */
+        .menu-icon.active span {
+            background-color: transparent;
+        }
+
+        .menu-icon.active span:before {
+            transform: translateY(10px) rotate(45deg);
+        }
+
+        .menu-icon.active span:after {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        /* Estilos para mostrar el menú en dispositivos móviles */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #4caf50;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                z-index: 2;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 15px 0;
+                border-bottom: 1px solid #388E3C;
+            }
+
+            nav ul li:last-child a {
+                border-bottom: none;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+        }
+
+        /* Estilos para el contenido principal */
+        #article {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            text-align: justify;
+        }
+
+        #article h2 {
+            font-size: 2.5em;
+            color: #388E3C;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #article h3 {
+            font-size: 1.8em;
+            color: #388E3C;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #article p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        #article ul {
+            margin-bottom: 20px;
+        }
+
+        #article ul li {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+
+        #article .featured-image {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        blockquote {
+            font-style: italic;
+            color: #555;
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 4px solid #4caf50;
+        }
+
+        blockquote p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        blockquote cite {
+            display: block;
+            font-size: 1em;
+            margin-top: 10px;
+            color: #777;
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            background-color: #4caf50;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>Vital Nutri</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li>
+                    <a href="#">Sustento Teórico</a>
+                    <div class="submenu">
+                        <a href="fisiologia.html">Fisiología del Ejercicio</a>
+                        <a href="principios.html">Principios del Entrenamiento</a>
+                        <a href="componentes.html">Componentes de una Rutina</a>
+                        <a href="aspectos.html">Aspectos Psicológicos</a>
+                        <a href="nutricion.html">Nutrición Deportiva</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Más</a>
+                    <div class="submenu">
+                        <a href="blog.html">Blog</a>
+                        <a href="comparacion.html">Comparación de Alimentos</a>
+                        <a href="ejercicio.html">Recomendaciones de Ejercicio</a>
+                    </div>
+                </li>
+                <li><a href="acercade.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Artículo Completo -->
+    <section id="article">
+        <h2>Comparación: Quinoa vs Arroz</h2>
+        <img src="images/quinoa-arroz1.jpg" alt="Quinoa y Arroz" class="featured-image">
+        <p>La quinoa y el arroz son dos granos populares que a menudo se comparan por sus beneficios nutricionales y aplicaciones culinarias. A continuación, analizamos las características clave de cada uno para ayudarte a tomar decisiones informadas sobre tu dieta.</p>
+        
+        <h3>Quinoa</h3>
+        <img src="images/quinoa.jpg" alt="Quinoa" class="featured-image">
+        <p>La quinoa es conocida por ser una excelente fuente de proteínas, especialmente adecuada para dietas vegetarianas y veganas debido a su perfil de aminoácidos completo. Además, tiene un bajo índice glucémico, lo que la hace ideal para controlar los niveles de azúcar en la sangre.</p>
+        
+        <h3>Arroz</h3>
+        <img src="images/arroz.jpg" alt="Arroz" class="featured-image">
+        <p>El arroz es una fuente económica de energía y carbohidratos. El arroz integral es especialmente rico en fibra y nutrientes esenciales, aunque el arroz blanco es menos nutritivo en comparación.</p>
+        
+        <blockquote>
+            <p>"La elección entre quinoa y arroz depende de tus necesidades nutricionales, preferencias dietéticas y disponibilidad local." - Nutricionista</p>
+        </blockquote>
+        
+        <p>Vuelve <a href="blog.html">atrás</a> para ver más artículos.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Vital Nutri. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('nav ul');
+            const menuIcon = document.querySelector('.menu-icon');
+            menu.classList.toggle('active');
+            menuIcon.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
+
+
+
